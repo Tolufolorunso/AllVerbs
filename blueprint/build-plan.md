@@ -10,7 +10,7 @@ data foundation everything reads from.
 - [x] 1. **Design system & theme** - theme tokens (dark-first color, type scale,
   spacing, radii) + `useTheme`, and the UI primitive layer (`Text`, `Button`,
   `Card`, `Badge`, inputs, feedback components).
-- [ ] 2. **App navigation shell** - root stack + 4-tab navigator (Today, Browse,
+- [x] 2. **App navigation shell** - root stack + 4-tab navigator (Today, Browse,
   Study, Progress), the expo-router route structure, and placeholder screens for
   pushed routes (verb detail, study flows, settings, unlock, onboarding).
 - [ ] 3. **Verb content model & offline dataset** - schema for verbs (senses,
