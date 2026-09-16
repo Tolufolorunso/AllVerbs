@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Text } from "@/components/ui/text";
 import { useTheme } from "@/hooks/use-theme";
 import { router, type Href } from "expo-router";
+import type { ReactNode } from "react";
 import { View } from "react-native";
 
 export interface PlaceholderAction {
@@ -15,6 +16,7 @@ export interface PlaceholderScreenProps {
     message?: string;
     feature?: string;
     actions?: PlaceholderAction[];
+    children?: ReactNode;
 }
 
 export function PlaceholderScreen({
@@ -22,6 +24,7 @@ export function PlaceholderScreen({
     message,
     feature,
     actions,
+    children,
 }: PlaceholderScreenProps) {
     const { colors, spacing } = useTheme();
     return (
@@ -44,6 +47,7 @@ export function PlaceholderScreen({
                     {message}
                 </Text>
             ) : null}
+            {children}
             {actions && actions.length > 0 ? (
                 <View
                     style={{

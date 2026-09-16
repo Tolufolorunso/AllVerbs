@@ -13,7 +13,7 @@ data foundation everything reads from.
 - [x] 2. **App navigation shell** - root stack + 4-tab navigator (Today, Browse,
   Study, Progress), the expo-router route structure, and placeholder screens for
   pushed routes (verb detail, study flows, settings, unlock, onboarding).
-- [ ] 3. **Verb content model & offline dataset** - schema for verbs (senses,
+- [x] 3. **Verb content model & offline dataset** - schema for verbs (senses,
   examples, forms, collocations, phrasal verbs, synonyms, CEFR, audio text) with
   stable ids so each sense, collocation, and phrasal verb is an independent
   study item; a bundled dataset with a seed batch (A1) and a data-loading layer.

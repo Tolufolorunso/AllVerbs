@@ -1,0 +1,1170 @@
+[
+  {
+    "id": "be",
+    "infinitive": "be",
+    "cefrLevel": "A1",
+    "forms": {
+      "base": "be",
+      "past": "was/were",
+      "pastParticiple": "been",
+      "ing": "being",
+      "thirdPerson": "is",
+      "regular": false,
+      "notes": "Use was with I, he, she, it; use were with you, we, they."
+    },
+    "senses": [
+      {
+        "id": "be.s.exist",
+        "definition": "to exist or to be present in a place",
+        "cefrLevel": "A1",
+        "examples": ["There is a book on the table.", "She is at home today."]
+      },
+      {
+        "id": "be.s.identity",
+        "definition": "used to say who or what someone or something is",
+        "cefrLevel": "A1",
+        "examples": ["He is my brother.", "This is my new phone."]
+      },
+      {
+        "id": "be.s.describe",
+        "definition": "used to describe the state or quality of someone or something",
+        "cefrLevel": "A1",
+        "examples": ["I am tired today.", "The soup is very hot."]
+      }
+    ],
+    "phrasalVerbs": [],
+    "collocations": [
+      {
+        "id": "be.c.be-careful",
+        "text": "be careful",
+        "type": "other",
+        "gloss": "to give attention to what you are doing so that nothing bad happens",
+        "example": "Be careful, the floor is wet.",
+        "cefrLevel": "A1"
+      }
+    ],
+    "synonyms": ["exist", "remain"],
+    "antonyms": [],
+    "audioText": "be",
+    "phonetic": "biː"
+  },
+  {
+    "id": "have",
+    "infinitive": "have",
+    "cefrLevel": "A1",
+    "forms": {
+      "base": "have",
+      "past": "had",
+      "pastParticiple": "had",
+      "ing": "having",
+      "thirdPerson": "has",
+      "regular": false
+    },
+    "senses": [
+      {
+        "id": "have.s.possess",
+        "definition": "to own or hold something",
+        "cefrLevel": "A1",
+        "examples": ["I have a new bike.", "She has two brothers."]
+      },
+      {
+        "id": "have.s.eat-drink",
+        "definition": "to eat, drink, or take part in something",
+        "cefrLevel": "A1",
+        "examples": ["We have lunch at one o'clock.", "Did you have a good time?"]
+      }
+    ],
+    "phrasalVerbs": [],
+    "collocations": [
+      {
+        "id": "have.c.have-a-look",
+        "text": "have a look",
+        "type": "verb+noun",
+        "gloss": "to look at something",
+        "example": "Can I have a look at your book?",
+        "cefrLevel": "A2"
+      },
+      {
+        "id": "have.c.have-breakfast",
+        "text": "have breakfast",
+        "type": "verb+noun",
+        "gloss": "to eat the first meal of the day",
+        "example": "I have breakfast at seven o'clock.",
+        "cefrLevel": "A1"
+      }
+    ],
+    "synonyms": ["own", "possess"],
+    "antonyms": [],
+    "audioText": "have",
+    "phonetic": "hæv"
+  },
+  {
+    "id": "do",
+    "infinitive": "do",
+    "cefrLevel": "A1",
+    "forms": {
+      "base": "do",
+      "past": "did",
+      "pastParticiple": "done",
+      "ing": "doing",
+      "thirdPerson": "does",
+      "regular": false
+    },
+    "senses": [
+      {
+        "id": "do.s.perform",
+        "definition": "to perform an action or a piece of work",
+        "cefrLevel": "A1",
+        "examples": [
+          "I do my homework after dinner.",
+          "She does the washing on Sundays."
+        ]
+      },
+      {
+        "id": "do.s.auxiliary",
+        "definition": "used with another verb to make questions and negative sentences",
+        "cefrLevel": "A1",
+        "examples": ["Do you like coffee?", "I do not know his name."]
+      }
+    ],
+    "phrasalVerbs": [],
+    "collocations": [
+      {
+        "id": "do.c.do-homework",
+        "text": "do homework",
+        "type": "verb+noun",
+        "gloss": "to complete school work that a teacher gives you",
+        "example": "He does his homework in the kitchen.",
+        "cefrLevel": "A1"
+      }
+    ],
+    "synonyms": ["perform", "complete"],
+    "antonyms": [],
+    "audioText": "do",
+    "phonetic": "duː"
+  },
+  {
+    "id": "go",
+    "infinitive": "go",
+    "cefrLevel": "A1",
+    "forms": {
+      "base": "go",
+      "past": "went",
+      "pastParticiple": "gone",
+      "ing": "going",
+      "thirdPerson": "goes",
+      "regular": false
+    },
+    "senses": [
+      {
+        "id": "go.s.move",
+        "definition": "to move or travel from one place to another",
+        "cefrLevel": "A1",
+        "examples": ["We go to school by bus.", "They went to the market this morning."]
+      },
+      {
+        "id": "go.s.leave",
+        "definition": "to leave a place",
+        "cefrLevel": "A1",
+        "examples": ["It is late, I must go.", "The train goes at six."]
+      }
+    ],
+    "phrasalVerbs": [
+      {
+        "id": "go.p.out",
+        "phrase": "go out",
+        "meaning": "to leave your home to do something enjoyable",
+        "example": "We go out for dinner on Fridays.",
+        "cefrLevel": "A1",
+        "separable": false
+      }
+    ],
+    "collocations": [
+      {
+        "id": "go.c.go-shopping",
+        "text": "go shopping",
+        "type": "other",
+        "gloss": "to go to shops to buy things",
+        "example": "She goes shopping every Saturday.",
+        "cefrLevel": "A1"
+      }
+    ],
+    "synonyms": ["travel", "move", "leave"],
+    "antonyms": ["stay", "remain"],
+    "audioText": "go",
+    "phonetic": "ɡəʊ"
+  },
+  {
+    "id": "get",
+    "infinitive": "get",
+    "cefrLevel": "A1",
+    "forms": {
+      "base": "get",
+      "past": "got",
+      "pastParticiple": "got",
+      "ing": "getting",
+      "thirdPerson": "gets",
+      "regular": false,
+      "notes": "In British English the past participle is got; American English also uses gotten."
+    },
+    "senses": [
+      {
+        "id": "get.s.receive",
+        "definition": "to receive or obtain something",
+        "cefrLevel": "A1",
+        "examples": [
+          "I got a letter from my friend.",
+          "Where did you get that bag?"
+        ]
+      },
+      {
+        "id": "get.s.become",
+        "definition": "to become or to start to be in a state",
+        "cefrLevel": "A1",
+        "examples": ["It gets dark at six.", "She got tired very quickly."]
+      }
+    ],
+    "phrasalVerbs": [
+      {
+        "id": "get.p.up",
+        "phrase": "get up",
+        "meaning": "to get out of bed",
+        "example": "I get up at seven every morning.",
+        "cefrLevel": "A1",
+        "separable": false
+      },
+      {
+        "id": "get.p.on",
+        "phrase": "get on",
+        "meaning": "to go onto a bus, train, or plane",
+        "example": "We got on the bus near the station.",
+        "cefrLevel": "A2",
+        "separable": false,
+        "particleNote": "The opposite is get off."
+      }
+    ],
+    "collocations": [
+      {
+        "id": "get.c.get-dressed",
+        "text": "get dressed",
+        "type": "other",
+        "gloss": "to put your clothes on",
+        "example": "The children get dressed before breakfast.",
+        "cefrLevel": "A1"
+      }
+    ],
+    "synonyms": ["receive", "obtain", "become"],
+    "antonyms": [],
+    "audioText": "get",
+    "phonetic": "ɡet"
+  },
+  {
+    "id": "make",
+    "infinitive": "make",
+    "cefrLevel": "A1",
+    "forms": {
+      "base": "make",
+      "past": "made",
+      "pastParticiple": "made",
+      "ing": "making",
+      "thirdPerson": "makes",
+      "regular": false
+    },
+    "senses": [
+      {
+        "id": "make.s.create",
+        "definition": "to create or produce something",
+        "cefrLevel": "A1",
+        "examples": [
+          "She made a cake for his birthday.",
+          "This film was made in Nigeria."
+        ]
+      },
+      {
+        "id": "make.s.cause",
+        "definition": "to cause a person or thing to feel or do something",
+        "cefrLevel": "A1",
+        "examples": ["The noise made me jump.", "That song makes me happy."]
+      }
+    ],
+    "phrasalVerbs": [],
+    "collocations": [
+      {
+        "id": "make.c.make-a-mistake",
+        "text": "make a mistake",
+        "type": "verb+noun",
+        "gloss": "to do something wrong by accident",
+        "example": "I made a mistake in the test.",
+        "cefrLevel": "A2"
+      }
+    ],
+    "synonyms": ["create", "produce", "build"],
+    "antonyms": ["destroy", "break"],
+    "audioText": "make",
+    "phonetic": "meɪk"
+  },
+  {
+    "id": "take",
+    "infinitive": "take",
+    "cefrLevel": "A1",
+    "forms": {
+      "base": "take",
+      "past": "took",
+      "pastParticiple": "taken",
+      "ing": "taking",
+      "thirdPerson": "takes",
+      "regular": false
+    },
+    "senses": [
+      {
+        "id": "take.s.carry",
+        "definition": "to carry or move something with you",
+        "cefrLevel": "A1",
+        "examples": [
+          "Take an umbrella with you.",
+          "He took my hand and smiled."
+        ]
+      },
+      {
+        "id": "take.s.travel-by",
+        "definition": "to travel by a particular type of vehicle",
+        "cefrLevel": "A1",
+        "examples": ["I take the bus to work.", "We took a taxi home."]
+      }
+    ],
+    "phrasalVerbs": [],
+    "collocations": [
+      {
+        "id": "take.c.take-a-photo",
+        "text": "take a photo",
+        "type": "verb+noun",
+        "gloss": "to use a camera to make a picture of something",
+        "example": "She took a photo of the old church.",
+        "cefrLevel": "A2"
+      }
+    ],
+    "synonyms": ["carry", "bring"],
+    "antonyms": [],
+    "audioText": "take",
+    "phonetic": "teɪk"
+  },
+  {
+    "id": "come",
+    "infinitive": "come",
+    "cefrLevel": "A1",
+    "forms": {
+      "base": "come",
+      "past": "came",
+      "pastParticiple": "come",
+      "ing": "coming",
+      "thirdPerson": "comes",
+      "regular": false
+    },
+    "senses": [
+      {
+        "id": "come.s.arrive",
+        "definition": "to move towards the person who is speaking or towards a place",
+        "cefrLevel": "A1",
+        "examples": [
+          "Come here, please.",
+          "She came to the party late."
+        ]
+      }
+    ],
+    "phrasalVerbs": [
+      {
+        "id": "come.p.in",
+        "phrase": "come in",
+        "meaning": "to enter a room or a building",
+        "example": "Come in and sit down.",
+        "cefrLevel": "A1",
+        "separable": false
+      },
+      {
+        "id": "come.p.back",
+        "phrase": "come back",
+        "meaning": "to return to a place",
+        "example": "He came back at ten o'clock.",
+        "cefrLevel": "A2",
+        "separable": false
+      }
+    ],
+    "collocations": [],
+    "synonyms": ["arrive", "approach"],
+    "antonyms": ["go", "leave"],
+    "audioText": "come",
+    "phonetic": "kʌm"
+  },
+  {
+    "id": "see",
+    "infinitive": "see",
+    "cefrLevel": "A1",
+    "forms": {
+      "base": "see",
+      "past": "saw",
+      "pastParticiple": "seen",
+      "ing": "seeing",
+      "thirdPerson": "sees",
+      "regular": false
+    },
+    "senses": [
+      {
+        "id": "see.s.perceive",
+        "definition": "to notice something with your eyes",
+        "cefrLevel": "A1",
+        "examples": [
+          "I can see the mountains from my window.",
+          "Did you see that car?"
+        ]
+      },
+      {
+        "id": "see.s.meet",
+        "definition": "to meet or visit someone",
+        "cefrLevel": "A1",
+        "examples": ["I saw my teacher in town yesterday.", "I am seeing my doctor on Monday."]
+      },
+      {
+        "id": "see.s.understand",
+        "definition": "to understand something",
+        "cefrLevel": "A2",
+        "examples": ["I see what you mean.", "Now I see why she was angry."]
+      }
+    ],
+    "phrasalVerbs": [],
+    "collocations": [],
+    "synonyms": ["notice", "watch", "view"],
+    "antonyms": [],
+    "audioText": "see",
+    "phonetic": "siː"
+  },
+  {
+    "id": "know",
+    "infinitive": "know",
+    "cefrLevel": "A1",
+    "forms": {
+      "base": "know",
+      "past": "knew",
+      "pastParticiple": "known",
+      "ing": "knowing",
+      "thirdPerson": "knows",
+      "regular": false
+    },
+    "senses": [
+      {
+        "id": "know.s.have-information",
+        "definition": "to have information about something in your mind",
+        "cefrLevel": "A1",
+        "examples": ["I know her phone number.", "Do you know the answer?"]
+      },
+      {
+        "id": "know.s.be-familiar",
+        "definition": "to be familiar with a person, place, or thing",
+        "cefrLevel": "A1",
+        "examples": ["I know him very well.", "She knows this city well."]
+      }
+    ],
+    "phrasalVerbs": [],
+    "collocations": [],
+    "synonyms": ["understand", "recognize"],
+    "antonyms": [],
+    "audioText": "know",
+    "phonetic": "nəʊ"
+  },
+  {
+    "id": "think",
+    "infinitive": "think",
+    "cefrLevel": "A1",
+    "forms": {
+      "base": "think",
+      "past": "thought",
+      "pastParticiple": "thought",
+      "ing": "thinking",
+      "thirdPerson": "thinks",
+      "regular": false
+    },
+    "senses": [
+      {
+        "id": "think.s.believe",
+        "definition": "to have an opinion or a belief about something",
+        "cefrLevel": "A1",
+        "examples": ["I think it is a good idea.", "She thinks he is right."]
+      },
+      {
+        "id": "think.s.consider",
+        "definition": "to use your mind to consider something carefully",
+        "cefrLevel": "A1",
+        "examples": ["Think carefully before you answer.", "He is thinking about the problem."]
+      }
+    ],
+    "phrasalVerbs": [],
+    "collocations": [
+      {
+        "id": "think.c.think-about",
+        "text": "think about",
+        "type": "verb+preposition",
+        "gloss": "to consider something or someone in your mind",
+        "example": "She is thinking about her exam.",
+        "cefrLevel": "A2"
+      }
+    ],
+    "synonyms": ["believe", "consider"],
+    "antonyms": [],
+    "audioText": "think",
+    "phonetic": "θɪŋk"
+  },
+  {
+    "id": "say",
+    "infinitive": "say",
+    "cefrLevel": "A1",
+    "forms": {
+      "base": "say",
+      "past": "said",
+      "pastParticiple": "said",
+      "ing": "saying",
+      "thirdPerson": "says",
+      "regular": false
+    },
+    "senses": [
+      {
+        "id": "say.s.speak-words",
+        "definition": "to speak words to someone",
+        "cefrLevel": "A1",
+        "examples": ["What did you say?", "She said hello to me at the door."]
+      }
+    ],
+    "phrasalVerbs": [],
+    "collocations": [],
+    "synonyms": ["speak", "tell", "state"],
+    "antonyms": [],
+    "audioText": "say",
+    "phonetic": "seɪ"
+  },
+  {
+    "id": "give",
+    "infinitive": "give",
+    "cefrLevel": "A1",
+    "forms": {
+      "base": "give",
+      "past": "gave",
+      "pastParticiple": "given",
+      "ing": "giving",
+      "thirdPerson": "gives",
+      "regular": false
+    },
+    "senses": [
+      {
+        "id": "give.s.hand",
+        "definition": "to hand something to someone or offer it to them",
+        "cefrLevel": "A1",
+        "examples": [
+          "Give me the pen, please.",
+          "He gave her a present."
+        ]
+      }
+    ],
+    "phrasalVerbs": [
+      {
+        "id": "give.p.back",
+        "phrase": "give back",
+        "meaning": "to return something to the person who owns it",
+        "example": "Please give back my book tomorrow.",
+        "cefrLevel": "A2",
+        "separable": true,
+        "particleNote": "The object can go before or after back: give back the book, or give the book back."
+      }
+    ],
+    "collocations": [],
+    "synonyms": ["hand", "offer", "provide"],
+    "antonyms": ["take", "keep"],
+    "audioText": "give",
+    "phonetic": "ɡɪv"
+  },
+  {
+    "id": "find",
+    "infinitive": "find",
+    "cefrLevel": "A1",
+    "forms": {
+      "base": "find",
+      "past": "found",
+      "pastParticiple": "found",
+      "ing": "finding",
+      "thirdPerson": "finds",
+      "regular": false
+    },
+    "senses": [
+      {
+        "id": "find.s.discover",
+        "definition": "to discover something, often by chance",
+        "cefrLevel": "A1",
+        "examples": ["I found my keys under the sofa.", "She cannot find her phone."]
+      },
+      {
+        "id": "find.s.realize",
+        "definition": "to discover or learn that something is true",
+        "cefrLevel": "A2",
+        "examples": [
+          "I found that the shop was closed.",
+          "We found the work very easy."
+        ]
+      }
+    ],
+    "phrasalVerbs": [],
+    "collocations": [],
+    "synonyms": ["discover", "locate"],
+    "antonyms": ["lose"],
+    "audioText": "find",
+    "phonetic": "faɪnd"
+  },
+  {
+    "id": "tell",
+    "infinitive": "tell",
+    "cefrLevel": "A1",
+    "forms": {
+      "base": "tell",
+      "past": "told",
+      "pastParticiple": "told",
+      "ing": "telling",
+      "thirdPerson": "tells",
+      "regular": false
+    },
+    "senses": [
+      {
+        "id": "tell.s.inform",
+        "definition": "to give information to someone by speaking",
+        "cefrLevel": "A1",
+        "examples": [
+          "Tell me your name, please.",
+          "She told us a funny story."
+        ]
+      }
+    ],
+    "phrasalVerbs": [],
+    "collocations": [],
+    "synonyms": ["inform", "say"],
+    "antonyms": [],
+    "audioText": "tell",
+    "phonetic": "tel"
+  },
+  {
+    "id": "work",
+    "infinitive": "work",
+    "cefrLevel": "A1",
+    "forms": {
+      "base": "work",
+      "past": "worked",
+      "pastParticiple": "worked",
+      "ing": "working",
+      "thirdPerson": "works",
+      "regular": true
+    },
+    "senses": [
+      {
+        "id": "work.s.have-job",
+        "definition": "to have a job or to do a job",
+        "cefrLevel": "A1",
+        "examples": [
+          "She works in a hospital.",
+          "My father works in a bank."
+        ]
+      },
+      {
+        "id": "work.s.function",
+        "definition": "to function or operate correctly",
+        "cefrLevel": "A1",
+        "examples": ["My phone does not work.", "The lift works again now."]
+      }
+    ],
+    "phrasalVerbs": [],
+    "collocations": [],
+    "synonyms": ["labour", "operate", "function"],
+    "antonyms": [],
+    "audioText": "work",
+    "phonetic": "wɜːk"
+  },
+  {
+    "id": "want",
+    "infinitive": "want",
+    "cefrLevel": "A1",
+    "forms": {
+      "base": "want",
+      "past": "wanted",
+      "pastParticiple": "wanted",
+      "ing": "wanting",
+      "thirdPerson": "wants",
+      "regular": true
+    },
+    "senses": [
+      {
+        "id": "want.s.desire",
+        "definition": "to wish to have or do something",
+        "cefrLevel": "A1",
+        "examples": [
+          "I want a cup of tea.",
+          "Do you want to come with us?"
+        ]
+      }
+    ],
+    "phrasalVerbs": [],
+    "collocations": [],
+    "synonyms": ["wish", "need", "desire"],
+    "antonyms": [],
+    "audioText": "want",
+    "phonetic": "wɒnt"
+  },
+  {
+    "id": "need",
+    "infinitive": "need",
+    "cefrLevel": "A1",
+    "forms": {
+      "base": "need",
+      "past": "needed",
+      "pastParticiple": "needed",
+      "ing": "needing",
+      "thirdPerson": "needs",
+      "regular": true
+    },
+    "senses": [
+      {
+        "id": "need.s.require",
+        "definition": "to require something because it is important or necessary",
+        "cefrLevel": "A1",
+        "examples": ["I need some help with this box.", "You need to rest."]
+      }
+    ],
+    "phrasalVerbs": [],
+    "collocations": [],
+    "synonyms": ["require", "want"],
+    "antonyms": [],
+    "audioText": "need",
+    "phonetic": "niːd"
+  },
+  {
+    "id": "help",
+    "infinitive": "help",
+    "cefrLevel": "A1",
+    "forms": {
+      "base": "help",
+      "past": "helped",
+      "pastParticiple": "helped",
+      "ing": "helping",
+      "thirdPerson": "helps",
+      "regular": true
+    },
+    "senses": [
+      {
+        "id": "help.s.assist",
+        "definition": "to make it easier for someone to do something",
+        "cefrLevel": "A1",
+        "examples": [
+          "Can you help me with my bags?",
+          "She helped her mother cook dinner."
+        ]
+      }
+    ],
+    "phrasalVerbs": [],
+    "collocations": [],
+    "synonyms": ["assist", "support", "aid"],
+    "antonyms": [],
+    "audioText": "help",
+    "phonetic": "help"
+  },
+  {
+    "id": "look",
+    "infinitive": "look",
+    "cefrLevel": "A1",
+    "forms": {
+      "base": "look",
+      "past": "looked",
+      "pastParticiple": "looked",
+      "ing": "looking",
+      "thirdPerson": "looks",
+      "regular": true
+    },
+    "senses": [
+      {
+        "id": "look.s.direct-eyes",
+        "definition": "to turn your eyes towards something so that you can see it",
+        "cefrLevel": "A1",
+        "examples": [
+          "Look at that bird!",
+          "She looked out of the window."
+        ]
+      },
+      {
+        "id": "look.s.appear",
+        "definition": "to seem or to appear to be something",
+        "cefrLevel": "A1",
+        "examples": ["You look tired today.", "The sky looks grey."]
+      }
+    ],
+    "phrasalVerbs": [
+      {
+        "id": "look.p.for",
+        "phrase": "look for",
+        "meaning": "to try to find someone or something",
+        "example": "I am looking for my glasses.",
+        "cefrLevel": "A2",
+        "separable": false
+      },
+      {
+        "id": "look.p.after",
+        "phrase": "look after",
+        "meaning": "to take care of someone or something",
+        "example": "She looks after her little brother.",
+        "cefrLevel": "A2",
+        "separable": false
+      }
+    ],
+    "collocations": [],
+    "synonyms": ["watch", "see", "appear", "seem"],
+    "antonyms": [],
+    "audioText": "look",
+    "phonetic": "lʊk"
+  },
+  {
+    "id": "use",
+    "infinitive": "use",
+    "cefrLevel": "A1",
+    "forms": {
+      "base": "use",
+      "past": "used",
+      "pastParticiple": "used",
+      "ing": "using",
+      "thirdPerson": "uses",
+      "regular": true
+    },
+    "senses": [
+      {
+        "id": "use.s.employ",
+        "definition": "to do something with a tool or object for a purpose",
+        "cefrLevel": "A1",
+        "examples": [
+          "I use my phone to take photos.",
+          "Can I use your pen?"
+        ]
+      }
+    ],
+    "phrasalVerbs": [],
+    "collocations": [],
+    "synonyms": ["employ"],
+    "antonyms": [],
+    "audioText": "use",
+    "phonetic": "juːz"
+  },
+  {
+    "id": "play",
+    "infinitive": "play",
+    "cefrLevel": "A1",
+    "forms": {
+      "base": "play",
+      "past": "played",
+      "pastParticiple": "played",
+      "ing": "playing",
+      "thirdPerson": "plays",
+      "regular": true
+    },
+    "senses": [
+      {
+        "id": "play.s.game",
+        "definition": "to take part in a game or a sport",
+        "cefrLevel": "A1",
+        "examples": [
+          "The children play football after school.",
+          "Do you play tennis?"
+        ]
+      },
+      {
+        "id": "play.s.instrument",
+        "definition": "to perform music on an instrument",
+        "cefrLevel": "A1",
+        "examples": ["She plays the piano very well.", "He is learning to play the guitar."]
+      }
+    ],
+    "phrasalVerbs": [],
+    "collocations": [],
+    "synonyms": ["perform"],
+    "antonyms": [],
+    "audioText": "play",
+    "phonetic": "pleɪ"
+  },
+  {
+    "id": "live",
+    "infinitive": "live",
+    "cefrLevel": "A1",
+    "forms": {
+      "base": "live",
+      "past": "lived",
+      "pastParticiple": "lived",
+      "ing": "living",
+      "thirdPerson": "lives",
+      "regular": true,
+      "notes": "The verb is pronounced /lɪv/; the adjective live is pronounced /laɪv/."
+    },
+    "senses": [
+      {
+        "id": "live.s.reside",
+        "definition": "to have your home in a particular place",
+        "cefrLevel": "A1",
+        "examples": [
+          "I live in Lagos.",
+          "They lived in London for ten years."
+        ]
+      },
+      {
+        "id": "live.s.be-alive",
+        "definition": "to be alive",
+        "cefrLevel": "A2",
+        "examples": ["Some trees live for hundreds of years."]
+      }
+    ],
+    "phrasalVerbs": [],
+    "collocations": [],
+    "synonyms": ["reside", "dwell"],
+    "antonyms": ["die"],
+    "audioText": "live",
+    "phonetic": "lɪv"
+  },
+  {
+    "id": "learn",
+    "infinitive": "learn",
+    "cefrLevel": "A1",
+    "forms": {
+      "base": "learn",
+      "past": "learned",
+      "pastParticiple": "learned",
+      "ing": "learning",
+      "thirdPerson": "learns",
+      "regular": true,
+      "notes": "Learnt is also used for the past tense and past participle in British English."
+    },
+    "senses": [
+      {
+        "id": "learn.s.gain-knowledge",
+        "definition": "to get knowledge or a skill by studying or practising",
+        "cefrLevel": "A1",
+        "examples": [
+          "I want to learn Spanish.",
+          "She learned to swim last summer."
+        ]
+      }
+    ],
+    "phrasalVerbs": [],
+    "collocations": [],
+    "synonyms": ["study", "master"],
+    "antonyms": ["forget"],
+    "audioText": "learn",
+    "phonetic": "lɜːn"
+  },
+  {
+    "id": "run",
+    "infinitive": "run",
+    "cefrLevel": "A1",
+    "forms": {
+      "base": "run",
+      "past": "ran",
+      "pastParticiple": "run",
+      "ing": "running",
+      "thirdPerson": "runs",
+      "regular": false
+    },
+    "senses": [
+      {
+        "id": "run.s.move-fast",
+        "definition": "to move quickly using your legs",
+        "cefrLevel": "A1",
+        "examples": [
+          "I run in the park every morning.",
+          "The boy ran to the door."
+        ]
+      },
+      {
+        "id": "run.s.flow",
+        "definition": "to flow, or to make a liquid flow",
+        "cefrLevel": "A2",
+        "examples": ["The water is running into the sink.", "Do not leave the tap running."]
+      }
+    ],
+    "phrasalVerbs": [],
+    "collocations": [],
+    "synonyms": ["jog", "sprint", "dash"],
+    "antonyms": ["walk", "stop"],
+    "audioText": "run",
+    "phonetic": "rʌn"
+  },
+  {
+    "id": "eat",
+    "infinitive": "eat",
+    "cefrLevel": "A1",
+    "forms": {
+      "base": "eat",
+      "past": "ate",
+      "pastParticiple": "eaten",
+      "ing": "eating",
+      "thirdPerson": "eats",
+      "regular": false
+    },
+    "senses": [
+      {
+        "id": "eat.s.consume-food",
+        "definition": "to put food in your mouth and swallow it",
+        "cefrLevel": "A1",
+        "examples": [
+          "We eat dinner at seven o'clock.",
+          "She ate all the cake."
+        ]
+      }
+    ],
+    "phrasalVerbs": [
+      {
+        "id": "eat.p.out",
+        "phrase": "eat out",
+        "meaning": "to eat at a restaurant instead of at home",
+        "example": "We eat out on Fridays.",
+        "cefrLevel": "A2",
+        "separable": false
+      }
+    ],
+    "collocations": [],
+    "synonyms": ["consume"],
+    "antonyms": [],
+    "audioText": "eat",
+    "phonetic": "iːt"
+  },
+  {
+    "id": "drink",
+    "infinitive": "drink",
+    "cefrLevel": "A1",
+    "forms": {
+      "base": "drink",
+      "past": "drank",
+      "pastParticiple": "drunk",
+      "ing": "drinking",
+      "thirdPerson": "drinks",
+      "regular": false
+    },
+    "senses": [
+      {
+        "id": "drink.s.consume-liquid",
+        "definition": "to take liquid into your mouth and swallow it",
+        "cefrLevel": "A1",
+        "examples": [
+          "Drink plenty of water in this heat.",
+          "He drank a glass of milk."
+        ]
+      }
+    ],
+    "phrasalVerbs": [],
+    "collocations": [],
+    "synonyms": ["sip", "swallow"],
+    "antonyms": [],
+    "audioText": "drink",
+    "phonetic": "drɪŋk"
+  },
+  {
+    "id": "sleep",
+    "infinitive": "sleep",
+    "cefrLevel": "A1",
+    "forms": {
+      "base": "sleep",
+      "past": "slept",
+      "pastParticiple": "slept",
+      "ing": "sleeping",
+      "thirdPerson": "sleeps",
+      "regular": false
+    },
+    "senses": [
+      {
+        "id": "sleep.s.rest",
+        "definition": "to rest with your eyes closed, usually at night",
+        "cefrLevel": "A1",
+        "examples": [
+          "I sleep for eight hours every night.",
+          "The baby is sleeping now."
+        ]
+      }
+    ],
+    "phrasalVerbs": [],
+    "collocations": [],
+    "synonyms": ["rest", "doze"],
+    "antonyms": ["wake"],
+    "audioText": "sleep",
+    "phonetic": "sliːp"
+  },
+  {
+    "id": "write",
+    "infinitive": "write",
+    "cefrLevel": "A1",
+    "forms": {
+      "base": "write",
+      "past": "wrote",
+      "pastParticiple": "written",
+      "ing": "writing",
+      "thirdPerson": "writes",
+      "regular": false
+    },
+    "senses": [
+      {
+        "id": "write.s.put-words",
+        "definition": "to put words on paper or on a screen",
+        "cefrLevel": "A1",
+        "examples": [
+          "Write your name at the top of the page.",
+          "She wrote a long letter to her aunt."
+        ]
+      },
+      {
+        "id": "write.s.compose",
+        "definition": "to create a book, a song, or an article",
+        "cefrLevel": "A2",
+        "examples": ["He writes books for children."]
+      }
+    ],
+    "phrasalVerbs": [
+      {
+        "id": "write.p.down",
+        "phrase": "write down",
+        "meaning": "to write something on paper so that you do not forget it",
+        "example": "Write down the address before you go.",
+        "cefrLevel": "A2",
+        "separable": true,
+        "particleNote": "The object can go before or after down: write down the address, or write the address down."
+      }
+    ],
+    "collocations": [],
+    "synonyms": ["record", "compose"],
+    "antonyms": [],
+    "audioText": "write",
+    "phonetic": "raɪt"
+  },
+  {
+    "id": "read",
+    "infinitive": "read",
+    "cefrLevel": "A1",
+    "forms": {
+      "base": "read",
+      "past": "read",
+      "pastParticiple": "read",
+      "ing": "reading",
+      "thirdPerson": "reads",
+      "regular": false,
+      "notes": "The past tense and past participle are spelled read but pronounced /red/."
+    },
+    "senses": [
+      {
+        "id": "read.s.look-at-words",
+        "definition": "to look at words and understand what they mean",
+        "cefrLevel": "A1",
+        "examples": [
+          "I read the news every morning.",
+          "She read a story to her son."
+        ]
+      }
+    ],
+    "phrasalVerbs": [],
+    "collocations": [],
+    "synonyms": ["study"],
+    "antonyms": [],
+    "audioText": "read",
+    "phonetic": "riːd"
+  }
+]
