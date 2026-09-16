@@ -1,98 +1,173 @@
-import * as Device from 'expo-device';
-import { Platform, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { EmptyState } from "@/components/ui/empty-state";
+import { Input } from "@/components/ui/input";
+import { ProgressBar } from "@/components/ui/progress-bar";
+import { Spinner } from "@/components/ui/spinner";
+import { Text } from "@/components/ui/text";
+import { spacing as scale, type CefrLevel, type Colors } from "@/constants/theme";
+import { useTheme } from "@/hooks/use-theme";
+import { useState, type ReactNode } from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
 
-import { AnimatedIcon } from '@/components/animated-icon';
-import { HintRow } from '@/components/hint-row';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { WebBadge } from '@/components/web-badge';
-import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
+const LEVELS: CefrLevel[] = ["A1", "A2", "B1", "B2", "C1", "C2"];
 
-function getDevMenuHint() {
-  if (Platform.OS === 'web') {
-    return <ThemedText type="small">use browser devtools</ThemedText>;
-  }
-  if (Device.isDevice) {
-    return (
-      <ThemedText type="small">
-        shake device or press <ThemedText type="code">m</ThemedText> in terminal
-      </ThemedText>
-    );
-  }
-  const shortcut = Platform.OS === 'android' ? 'cmd+m (or ctrl+m)' : 'cmd+d';
+// Temporary design-system preview. Feature 2 (navigation shell) replaces this route.
+export default function DesignSystemPreview() {
+  const { colors, scheme, spacing } = useTheme();
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState<string | undefined>(undefined);
+
   return (
-    <ThemedText type="small">
-      press <ThemedText type="code">{shortcut}</ThemedText>
-    </ThemedText>
+    <ScrollView
+      style={{ flex: 1, backgroundColor: colors.background }}
+      contentContainerStyle={{ padding: spacing.lg, gap: spacing.xl }}
+    >
+      <View style={{ gap: spacing.xs }}>
+        <Text variant="heading">Design System</Text>
+        <Text variant="caption" color="muted">
+          Temporary preview ({scheme} scheme). Feature 2 replaces this route.
+        </Text>
+      </View>
+
+      <Section title="Colors">
+        <View style={styles.swatchGrid}>
+          {colorSwatches(colors).map((swatch) => (
+            <View key={swatch.name} style={{ width: 92, gap: spacing.xs }}>
+              <View
+                style={{
+                  height: 40,
+                  borderRadius: scale.sm,
+                  backgroundColor: swatch.value,
+                  borderWidth: StyleSheet.hairlineWidth,
+                  borderColor: colors.border,
+                }}
+              />
+              <Text variant="label" color="muted">
+                {swatch.name}
+              </Text>
+            </View>
+          ))}
+        </View>
+      </Section>
+
+      <Section title="Text">
+        <View style={{ gap: spacing.sm }}>
+          <Text variant="heading">Heading</Text>
+          <Text variant="title">Title</Text>
+          <Text variant="body">Body - the quick brown fox jumps over the lazy dog.</Text>
+          <Text variant="caption" color="muted">
+            Caption (muted)
+          </Text>
+          <Text variant="label" color="faint">
+            Label (faint)
+          </Text>
+          <Text variant="body" color="accent">
+            Accent text
+          </Text>
+        </View>
+      </Section>
+
+      <Section title="Buttons">
+        <View style={{ gap: spacing.md }}>
+          <View style={styles.wrapRow}>
+            <Button title="Primary" onPress={() => { }} />
+            <Button title="Ghost" variant="ghost" onPress={() => { }} />
+            <Button title="Disabled" disabled onPress={() => { }} />
+            <Button title="Loading" loading onPress={() => { }} />
+          </View>
+          <View style={{ ...styles.wrapRow, alignItems: "center" }}>
+            <Button title="Small" size="sm" onPress={() => { }} />
+            <Button title="Medium" size="md" onPress={() => { }} />
+            <Button title="Large" size="lg" onPress={() => { }} />
+          </View>
+          <Button title="Block button" block onPress={() => { }} />
+        </View>
+      </Section>
+
+      <Section title="Card + Badge">
+        <Card elevated style={{ gap: spacing.md }}>
+          <Text variant="title">run</Text>
+          <View style={styles.wrapRow}>
+            {LEVELS.map((level) => (
+              <Badge key={level} level={level} />
+            ))}
+          </View>
+          <View style={styles.wrapRow}>
+            <Badge tone="neutral" label="neutral" />
+            <Badge tone="accent" label="accent" />
+            <Badge tone="known" label="known" />
+            <Badge tone="learning" label="learning" />
+            <Badge tone="wrong" label="wrong" />
+          </View>
+        </Card>
+      </Section>
+
+      <Section title="Input">
+        <View style={{ gap: spacing.md }}>
+          <Input
+            label="Email"
+            placeholder="you@example.com"
+            value={email}
+            onChangeText={setEmail}
+            error={error}
+            hint="Used for a daily study reminder."
+          />
+          <Button
+            title="Validate"
+            variant="ghost"
+            onPress={() =>
+              setError(email.trim().length < 3 ? "Enter at least 3 characters." : undefined)
+            }
+          />
+        </View>
+      </Section>
+
+      <Section title="Feedback">
+        <View style={{ gap: spacing.lg }}>
+          <View style={{ flexDirection: "row", gap: spacing.lg, alignItems: "center" }}>
+            <Spinner />
+            <Spinner color={colors.known} size="large" />
+          </View>
+          <View style={{ gap: spacing.sm }}>
+            <Text variant="caption" color="muted">
+              Progress 65%
+            </Text>
+            <ProgressBar value={0.65} />
+            <ProgressBar value={0.3} color={colors.learning} height={6} />
+          </View>
+          <EmptyState
+            title="No verbs due"
+            message="Your next review cards will appear here."
+            action={{ label: "Browse verbs", onPress: () => { } }}
+          />
+        </View>
+      </Section>
+    </ScrollView>
   );
 }
 
-export default function HomeScreen() {
+function Section({ title, children }: { title: string; children: ReactNode }) {
+  const { spacing } = useTheme();
   return (
-    <ThemedView style={styles.container}>
-      <SafeAreaView style={styles.safeArea}>
-        <ThemedView style={styles.heroSection}>
-          <AnimatedIcon />
-          <ThemedText type="title" style={styles.title}>
-            Welcome to&nbsp;Expo
-          </ThemedText>
-        </ThemedView>
-
-        <ThemedText type="code" style={styles.code}>
-          get started
-        </ThemedText>
-
-        <ThemedView type="backgroundElement" style={styles.stepContainer}>
-          <HintRow
-            title="Try editing"
-            hint={<ThemedText type="code">src/app/index.tsx</ThemedText>}
-          />
-          <HintRow title="Dev tools" hint={getDevMenuHint()} />
-          <HintRow
-            title="Fresh start"
-            hint={<ThemedText type="code">npm run reset-project</ThemedText>}
-          />
-        </ThemedView>
-
-        {Platform.OS === 'web' && <WebBadge />}
-      </SafeAreaView>
-    </ThemedView>
+    <View style={{ gap: spacing.md }}>
+      <Text variant="label" color="faint">
+        {title.toUpperCase()}
+      </Text>
+      {children}
+    </View>
   );
+}
+
+function colorSwatches(colors: Colors): { name: string; value: string }[] {
+  const skip = new Set(["cefr", "badgeInk"]);
+  return Object.entries(colors)
+    .filter(([key, value]) => !skip.has(key) && typeof value === "string")
+    .map(([key, value]) => ({ name: key, value: value as string }));
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    flexDirection: 'row',
-  },
-  safeArea: {
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    alignItems: 'center',
-    gap: Spacing.three,
-    paddingBottom: BottomTabInset + Spacing.three,
-    maxWidth: MaxContentWidth,
-  },
-  heroSection: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    gap: Spacing.four,
-  },
-  title: {
-    textAlign: 'center',
-  },
-  code: {
-    textTransform: 'uppercase',
-  },
-  stepContainer: {
-    gap: Spacing.three,
-    alignSelf: 'stretch',
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.four,
-    borderRadius: Spacing.four,
-  },
+  swatchGrid: { flexDirection: "row", flexWrap: "wrap", gap: scale.sm },
+  wrapRow: { flexDirection: "row", flexWrap: "wrap", gap: scale.sm },
 });
