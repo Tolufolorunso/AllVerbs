@@ -21,7 +21,7 @@ data foundation everything reads from.
   list showing level and mastery indicators, and a search bar pinned at the top.
 - [x] 5. **Verb detail screen** - the hero full-usage page with tap-to-hear audio
   via device TTS.
-- [ ] 6. **Search** - instant lookup across all bundled verbs, surfaced within
+- [x] 6. **Search** - instant lookup across all bundled verbs, surfaced within
   the Browse tab.
 
 ## Milestone 2 - Active study

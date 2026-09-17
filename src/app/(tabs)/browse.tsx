@@ -1,15 +1,16 @@
 import { EmptyState } from "@/components/ui/empty-state";
 import { Input } from "@/components/ui/input";
-import { Text } from "@/components/ui/text";
 import { Spinner } from "@/components/ui/spinner";
+import { Text } from "@/components/ui/text";
 import { VerbListItem } from "@/components/verb-list-item";
 import { getAllVerbs } from "@/data/loader";
+import { searchVerbs, MATCH_LABEL, type SearchResult } from "@/data/search";
 import { CEFR_LEVELS, type CefrLevel, type Verb } from "@/data/types";
-import { useTheme } from "@/hooks/use-theme";
 import { useVerbMastery } from "@/hooks/use-mastery";
+import { useTheme } from "@/hooks/use-theme";
 import { router } from "expo-router";
 import { useEffect, useMemo, useState } from "react";
-import { SectionList, View } from "react-native";
+import { FlatList, SectionList, View } from "react-native";
 
 interface VerbSection {
     title: CefrLevel;
@@ -48,6 +49,12 @@ function useVerbs(): LoadState {
     return state;
 }
 
+// A headword hit needs no explanation; any other kind names where it matched.
+function matchSnippet(result: SearchResult): string | undefined {
+    if (result.kind === "headword") return undefined;
+    return `${MATCH_LABEL[result.kind]}: ${result.text}`;
+}
+
 export default function BrowseScreen() {
     const { colors, spacing } = useTheme();
     const state = useVerbs();
@@ -56,19 +63,23 @@ export default function BrowseScreen() {
 
     const isSearching = query.trim() !== "";
 
+    // Level browsing never depends on the query: searching switches to the
+    // ranked result list, so the sections stay a pure view of the dataset.
     const sections = useMemo<VerbSection[]>(() => {
         if (state.status !== "ready") return [];
-        const needle = query.trim().toLowerCase();
-        const matched = needle
-            ? state.verbs.filter((verb) =>
-                  verb.infinitive.toLowerCase().includes(needle),
-              )
-            : state.verbs;
         return CEFR_LEVELS.map((level) => ({
             title: level,
-            data: matched.filter((verb) => verb.cefrLevel === level),
+            data: state.verbs.filter((verb) => verb.cefrLevel === level),
         }));
-    }, [state, query]);
+    }, [state]);
+
+    const results = useMemo<SearchResult[]>(() => {
+        if (state.status !== "ready" || !isSearching) return [];
+        return searchVerbs(state.verbs, query);
+    }, [state, query, isSearching]);
+
+    const openVerb = (id: string) =>
+        router.push({ pathname: "/verb/[id]", params: { id } });
 
     if (state.status === "loading") {
         return (
@@ -107,8 +118,6 @@ export default function BrowseScreen() {
         );
     }
 
-    const hasResults = sections.some((section) => section.data.length > 0);
-
     return (
         <View style={{ flex: 1, backgroundColor: colors.background }}>
             <View
@@ -127,11 +136,43 @@ export default function BrowseScreen() {
                     returnKeyType="search"
                 />
             </View>
-            {isSearching && !hasResults ? (
-                <EmptyState
-                    title="No verbs found"
-                    message={`Nothing in the library matches "${query.trim()}".`}
-                />
+            {isSearching ? (
+                results.length === 0 ? (
+                    <EmptyState
+                        title="No verbs found"
+                        message={`Nothing in the library matches "${query.trim()}". Search covers headwords, forms, meanings, synonyms, collocations, and phrasal verbs.`}
+                    />
+                ) : (
+                    <FlatList
+                        data={results}
+                        keyExtractor={(result) => result.verb.id}
+                        keyboardShouldPersistTaps="handled"
+                        contentContainerStyle={{
+                            paddingHorizontal: spacing.lg,
+                            paddingBottom: spacing.xl,
+                            gap: spacing.sm,
+                        }}
+                        ListHeaderComponent={
+                            <Text
+                                variant="caption"
+                                color="muted"
+                                accessibilityLiveRegion="polite"
+                                accessibilityRole="text"
+                            >
+                                {results.length}{" "}
+                                {results.length === 1 ? "result" : "results"}
+                            </Text>
+                        }
+                        renderItem={({ item }) => (
+                            <VerbListItem
+                                verb={item.verb}
+                                mastery={masteryFor(item.verb.id)}
+                                snippet={matchSnippet(item)}
+                                onPress={() => openVerb(item.verb.id)}
+                            />
+                        )}
+                    />
+                )
             ) : (
                 <SectionList
                     sections={sections}
@@ -148,7 +189,7 @@ export default function BrowseScreen() {
                         </Text>
                     )}
                     renderSectionFooter={({ section }) =>
-                        section.data.length === 0 && !isSearching ? (
+                        section.data.length === 0 ? (
                             <Text variant="caption" color="faint">
                                 No {section.title}-level verbs yet.
                             </Text>
@@ -158,12 +199,7 @@ export default function BrowseScreen() {
                         <VerbListItem
                             verb={item}
                             mastery={masteryFor(item.id)}
-                            onPress={() =>
-                                router.push({
-                                    pathname: "/verb/[id]",
-                                    params: { id: item.id },
-                                })
-                            }
+                            onPress={() => openVerb(item.id)}
                         />
                     )}
                 />

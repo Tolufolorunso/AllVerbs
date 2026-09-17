@@ -14,17 +14,24 @@ export interface VerbListItemProps {
     verb: Verb;
     mastery: MasteryState;
     onPress: () => void;
+    // Why this row matched a search, replacing the default first-sense caption.
+    snippet?: string;
 }
 
-export function VerbListItem({ verb, mastery, onPress }: VerbListItemProps) {
+export function VerbListItem({
+    verb,
+    mastery,
+    onPress,
+    snippet,
+}: VerbListItemProps) {
     const { spacing } = useTheme();
-    const definition = verb.senses[0]?.definition;
+    const caption = snippet ?? verb.senses[0]?.definition;
 
     return (
         <Pressable
             onPress={onPress}
             accessibilityRole="button"
-            accessibilityLabel={`${verb.infinitive}, ${verb.cefrLevel}, ${MASTERY_LABEL[mastery]}`}
+            accessibilityLabel={`${verb.infinitive}, ${verb.cefrLevel}, ${MASTERY_LABEL[mastery]}${snippet ? `, ${snippet}` : ""}`}
             accessibilityHint="Opens the full verb page"
             style={({ pressed }) => ({ opacity: pressed ? 0.85 : 1 })}
         >
@@ -47,7 +54,7 @@ export function VerbListItem({ verb, mastery, onPress }: VerbListItemProps) {
                     />
                 </View>
                 <Text variant="caption" color="muted" numberOfLines={2}>
-                    {definition}
+                    {caption}
                 </Text>
             </Card>
         </Pressable>
