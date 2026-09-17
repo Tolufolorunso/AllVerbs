@@ -19,7 +19,7 @@ data foundation everything reads from.
   study item; a bundled dataset with a seed batch (A1) and a data-loading layer.
 - [x] 4. **Browse by CEFR level** - A1->C2 sections in the Browse tab with a verb
   list showing level and mastery indicators, and a search bar pinned at the top.
-- [ ] 5. **Verb detail screen** - the hero full-usage page with tap-to-hear audio
+- [x] 5. **Verb detail screen** - the hero full-usage page with tap-to-hear audio
   via device TTS.
 - [ ] 6. **Search** - instant lookup across all bundled verbs, surfaced within
   the Browse tab.

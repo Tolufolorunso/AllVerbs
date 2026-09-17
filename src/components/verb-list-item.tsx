@@ -1,8 +1,12 @@
-import { Badge, type BadgeTone } from "@/components/ui/badge";
+import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Text } from "@/components/ui/text";
 import type { Verb } from "@/data/types";
-import type { MasteryState } from "@/hooks/use-verb-mastery";
+import {
+    MASTERY_LABEL,
+    MASTERY_TONE,
+    type MasteryState,
+} from "@/hooks/use-mastery";
 import { useTheme } from "@/hooks/use-theme";
 import { Pressable, View } from "react-native";
 
@@ -11,18 +15,6 @@ export interface VerbListItemProps {
     mastery: MasteryState;
     onPress: () => void;
 }
-
-const MASTERY_LABEL: Record<MasteryState, string> = {
-    new: "New",
-    learning: "Learning",
-    known: "Known",
-};
-
-const MASTERY_TONE: Record<MasteryState, BadgeTone> = {
-    new: "neutral",
-    learning: "learning",
-    known: "known",
-};
 
 export function VerbListItem({ verb, mastery, onPress }: VerbListItemProps) {
     const { spacing } = useTheme();

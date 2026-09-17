@@ -6,7 +6,7 @@ import { VerbListItem } from "@/components/verb-list-item";
 import { getAllVerbs } from "@/data/loader";
 import { CEFR_LEVELS, type CefrLevel, type Verb } from "@/data/types";
 import { useTheme } from "@/hooks/use-theme";
-import { useVerbMastery } from "@/hooks/use-verb-mastery";
+import { useVerbMastery } from "@/hooks/use-mastery";
 import { router } from "expo-router";
 import { useEffect, useMemo, useState } from "react";
 import { SectionList, View } from "react-native";
