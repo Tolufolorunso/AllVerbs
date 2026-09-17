@@ -17,7 +17,7 @@ data foundation everything reads from.
   examples, forms, collocations, phrasal verbs, synonyms, CEFR, audio text) with
   stable ids so each sense, collocation, and phrasal verb is an independent
   study item; a bundled dataset with a seed batch (A1) and a data-loading layer.
-- [ ] 4. **Browse by CEFR level** - A1->C2 sections in the Browse tab with a verb
+- [x] 4. **Browse by CEFR level** - A1->C2 sections in the Browse tab with a verb
   list showing level and mastery indicators, and a search bar pinned at the top.
 - [ ] 5. **Verb detail screen** - the hero full-usage page with tap-to-hear audio
   via device TTS.
