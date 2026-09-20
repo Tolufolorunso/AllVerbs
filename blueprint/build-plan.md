@@ -28,7 +28,7 @@ data foundation everything reads from.
 
 - [x] 7. **On-device progress storage** - persistence layer for per-item
   mastery/SRS state keyed by study-item id, plus stats and streak (local only).
-- [ ] 8. **Light SRS engine** - mastery state per study item (sense,
+- [x] 8. **Light SRS engine** - mastery state per study item (sense,
   collocation, phrasal verb) and "due" review scheduling that prioritizes weak
   items.
 - [ ] 9. **Flashcards** - full-screen swipe/tap cards for senses, collocations,

@@ -8,6 +8,8 @@ import { getVerbById } from "@/data/loader";
 import { getStudyItemIds, type Verb } from "@/data/types";
 import { useSpeech, type SpeechStatus } from "@/hooks/use-speech";
 import { useTheme } from "@/hooks/use-theme";
+import { GRADE_LABEL, type ReviewGrade } from "@/srs/schedule";
+import type { ItemProgress } from "@/storage/progress";
 import { useProgress } from "@/storage/progress-context";
 import {
     MASTERY_LABEL,
@@ -153,12 +155,10 @@ function ChipRow({ label, words }: ChipRowProps) {
     );
 }
 
-// TEMPORARY (F9 removes this when real study flows write progress). It records
-// one review for every study item of this verb with fixed placeholder values, so
-// stored progress and its mastery badges are provable before flashcards and
-// quizzes exist. F8 replaces these values with real scheduling.
-const FIRST_REVIEW = { reviewCount: 1, intervalDays: 1 };
-const LATER_REVIEW = { reviewCount: 2, intervalDays: 30 };
+// TEMPORARY (F9 replaces this with the real flashcard flow). It grades every
+// study item of this verb through the real scheduler, so the SRS engine and its
+// effect on mastery are provable before flashcards and quizzes exist.
+const GRADES: ReviewGrade[] = ["again", "hard", "good", "easy"];
 
 interface ReviewControlProps {
     verb: Verb;
@@ -166,68 +166,75 @@ interface ReviewControlProps {
 
 function ReviewControl({ verb }: ReviewControlProps) {
     const { spacing } = useTheme();
-    const { getItemProgress, saveItemProgress, updateStreak, resetProgress } =
-        useProgress();
+    const { recordReview, resetProgress } = useProgress();
     const [busy, setBusy] = useState(false);
     const [message, setMessage] = useState<string | null>(null);
 
     const ids = getStudyItemIds(verb);
 
-    const run = async (action: () => Promise<void>, done: string) => {
+    // The action returns its own message, so a result can report what actually
+    // happened rather than a generic confirmation.
+    const run = async (
+        action: () => Promise<string>,
+        fallback: string,
+    ): Promise<void> => {
         setBusy(true);
         setMessage(null);
         try {
-            await action();
-            setMessage(done);
+            setMessage(await action());
         } catch (cause: unknown) {
             setMessage(
-                cause instanceof Error ? cause.message : "That did not save.",
+                cause instanceof Error ? cause.message : fallback,
             );
         } finally {
             setBusy(false);
         }
     };
 
-    const logReview = () =>
+    const gradeAll = (grade: ReviewGrade) =>
         run(async () => {
             const at = new Date();
+            let last: ItemProgress | undefined;
             for (const id of ids) {
-                const current = getItemProgress(id);
-                const step =
-                    (current?.reviewCount ?? 0) > 0 ? LATER_REVIEW : FIRST_REVIEW;
-                await saveItemProgress({
-                    studyItemId: id,
-                    ease: 2.5,
-                    intervalDays: step.intervalDays,
-                    dueAt: new Date(
-                        at.getTime() + step.intervalDays * 24 * 60 * 60 * 1000,
-                    ).toISOString(),
-                    reviewCount: step.reviewCount,
-                });
+                last = await recordReview(id, grade, at);
             }
-            await updateStreak(at);
-        }, `Logged ${ids.length} reviews for ${verb.infinitive}.`);
+            const interval = last ? `${last.intervalDays} days` : "none";
+            return `Graded ${ids.length} items ${GRADE_LABEL[grade]}; next in ${interval}.`;
+        }, "That did not save.");
 
     return (
         <View style={{ gap: spacing.sm }}>
             <Text variant="caption" color="faint">
-                Temporary until study flows land (F9): log a review to check that
-                progress is stored.
+                Temporary until flashcards land (F9): grade every item of this
+                verb to check the schedule.
             </Text>
-            <Button
-                title="Log a review (temporary)"
-                variant="ghost"
-                block
-                disabled={ids.length === 0}
-                loading={busy}
-                onPress={logReview}
-            />
+            <View
+                style={{
+                    flexDirection: "row",
+                    flexWrap: "wrap",
+                    gap: spacing.sm,
+                }}
+            >
+                {GRADES.map((grade) => (
+                    <Button
+                        key={grade}
+                        title={GRADE_LABEL[grade]}
+                        variant="ghost"
+                        size="sm"
+                        disabled={ids.length === 0 || busy}
+                        onPress={() => gradeAll(grade)}
+                    />
+                ))}
+            </View>
             <Button
                 title="Reset progress"
                 variant="ghost"
                 block
                 disabled={busy}
-                onPress={() => run(resetProgress, "Progress reset.")}
+                onPress={() => run(async () => {
+                    await resetProgress();
+                    return "Progress reset.";
+                }, "Progress could not be reset.")}
             />
             {message ? (
                 <Text

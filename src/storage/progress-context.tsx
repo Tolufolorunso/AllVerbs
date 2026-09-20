@@ -21,6 +21,7 @@ import {
     writeItemProgress,
     type ItemProgress,
 } from "./progress";
+import { scheduleReview, type ReviewGrade } from "@/srs/schedule";
 import { EMPTY_STREAK, type StreakState } from "./streak";
 
 export type ProgressStatus = "loading" | "ready" | "error";
@@ -35,6 +36,11 @@ export interface ProgressContextValue {
     streak: StreakState;
     getItemProgress: (studyItemId: string) => ItemProgress | undefined;
     saveItemProgress: (progress: ItemProgress) => Promise<void>;
+    recordReview: (
+        studyItemId: string,
+        grade: ReviewGrade,
+        now: Date,
+    ) => Promise<ItemProgress>;
     updateStreak: (now: Date) => Promise<StreakState>;
     resetProgress: () => Promise<void>;
 }
@@ -127,6 +133,30 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
         [requireReady],
     );
 
+    // Scheduling, persisting, and counting the streak are one act, because a
+    // graded review is what studying is. Leaving the streak to each session screen
+    // would let one forgetful screen break it silently.
+    const recordReview = useCallback(
+        async (studyItemId: string, grade: ReviewGrade, now: Date) => {
+            requireReady();
+            const next = scheduleReview(
+                studyItemId,
+                items.get(studyItemId),
+                grade,
+                now,
+            );
+            await writeItemProgress(next);
+            setItems((current) => {
+                const updated = new Map(current);
+                updated.set(next.studyItemId, next);
+                return updated;
+            });
+            await updateStreak(now);
+            return next;
+        },
+        [items, requireReady, updateStreak],
+    );
+
     // Allowed while in the error state on purpose: clearing unusable data is the
     // only way back to a clean store, and it is the one write that cannot destroy
     // anything this build understands.
@@ -149,6 +179,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
             streak,
             getItemProgress,
             saveItemProgress,
+            recordReview,
             updateStreak,
             resetProgress,
         }),
@@ -159,6 +190,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
             streak,
             getItemProgress,
             saveItemProgress,
+            recordReview,
             updateStreak,
             resetProgress,
         ],

@@ -6,6 +6,7 @@ import { Spinner } from "@/components/ui/spinner";
 import { Text } from "@/components/ui/text";
 import { CEFR_LEVELS } from "@/data/types";
 import { useStudyStats } from "@/hooks/use-study-stats";
+import { useStudyQueue } from "@/hooks/use-study-queue";
 import { useTheme } from "@/hooks/use-theme";
 import { useProgress } from "@/storage/progress-context";
 import { useCallback, useState } from "react";
@@ -119,6 +120,63 @@ function ProgressReadout() {
     );
 }
 
+// TEMPORARY (F13 replaces this screen). F8 needs the due queue observable before
+// flashcards and the Today hub exist, so this shows what the engine would present.
+function QueueReadout() {
+    const { spacing } = useTheme();
+    const state = useStudyQueue({ limit: 5 });
+
+    if (state.status === "loading") {
+        return (
+            <View style={{ paddingVertical: spacing.lg }}>
+                <Spinner />
+            </View>
+        );
+    }
+
+    if (state.status === "error") {
+        return (
+            <Text variant="body" color="muted" align="center">
+                {state.message}
+            </Text>
+        );
+    }
+
+    return (
+        <View style={{ alignSelf: "stretch", gap: spacing.md }}>
+            <Text variant="title" accessibilityRole="header">
+                Review queue
+            </Text>
+            <Card style={{ gap: spacing.sm }}>
+                <StatRow label="Due now" value={String(state.dueCount)} />
+                <StatRow label="Unstarted" value={String(state.newCount)} />
+            </Card>
+            {state.queue.length === 0 ? (
+                <Text variant="caption" color="faint" align="center">
+                    Nothing to review yet.
+                </Text>
+            ) : (
+                <Card style={{ gap: spacing.sm }}>
+                    <Text variant="caption" color="muted">
+                        Next up
+                    </Text>
+                    {state.queue.map((entry) => (
+                        <StatRow
+                            key={entry.studyItemId}
+                            label={entry.studyItemId}
+                            value={
+                                entry.progress
+                                    ? `${entry.reason}, ${entry.progress.intervalDays}d`
+                                    : entry.reason
+                            }
+                        />
+                    ))}
+                </Card>
+            )}
+        </View>
+    );
+}
+
 export default function ProgressScreen() {
     const { spacing } = useTheme();
     const { status, error, warnings, resetProgress } = useProgress();
@@ -214,6 +272,7 @@ export default function ProgressScreen() {
                 </Card>
             ) : null}
             <ProgressReadout />
+            <QueueReadout />
             {resetControl}
         </ScrollView>
     );
