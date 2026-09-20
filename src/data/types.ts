@@ -86,3 +86,30 @@ export function getStudyItemIds(verb: Verb): string[] {
         ...verb.phrasalVerbs.map((item) => item.id),
     ];
 }
+
+// The letter each kind occupies in the persisted "<verbId>.<letter>.<slug>" id.
+// The validator and anything reading an id back out of storage share this map, so
+// the format cannot drift between what is written and what is parsed.
+export const STUDY_ITEM_KIND_LETTER: Record<StudyItemKind, "s" | "c" | "p"> = {
+    sense: "s",
+    collocation: "c",
+    phrasalVerb: "p",
+};
+
+const KIND_BY_LETTER: Record<string, StudyItemKind> = {
+    s: "sense",
+    c: "collocation",
+    p: "phrasalVerb",
+};
+
+// Recovers the ref an id encodes, or undefined when the id is not that shape. It
+// says nothing about whether the item exists in the bundle.
+export function parseStudyItemId(id: string): StudyItemRef | undefined {
+    const parts = id.split(".");
+    if (parts.length !== 3) return undefined;
+    const [verbId, letter, slug] = parts;
+    if (!verbId || !letter || !slug) return undefined;
+    const kind = KIND_BY_LETTER[letter];
+    if (!kind) return undefined;
+    return { kind, id };
+}

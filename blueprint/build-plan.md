@@ -31,7 +31,7 @@ data foundation everything reads from.
 - [x] 8. **Light SRS engine** - mastery state per study item (sense,
   collocation, phrasal verb) and "due" review scheduling that prioritizes weak
   items.
-- [ ] 9. **Flashcards** - full-screen swipe/tap cards for senses, collocations,
+- [x] 9. **Flashcards** - full-screen swipe/tap cards for senses, collocations,
   and phrasal verbs, driven by the SRS queue.
 - [ ] 10. **Quizzes** - full-screen active-recall exercises (multiple choice,
   correct tense/form, fill-in-the-blank, and complete-the-phrase for

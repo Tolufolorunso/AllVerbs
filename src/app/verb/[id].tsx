@@ -8,9 +8,6 @@ import { getVerbById } from "@/data/loader";
 import { getStudyItemIds, type Verb } from "@/data/types";
 import { useSpeech, type SpeechStatus } from "@/hooks/use-speech";
 import { useTheme } from "@/hooks/use-theme";
-import { GRADE_LABEL, type ReviewGrade } from "@/srs/schedule";
-import type { ItemProgress } from "@/storage/progress";
-import { useProgress } from "@/storage/progress-context";
 import {
     MASTERY_LABEL,
     MASTERY_TONE,
@@ -155,96 +152,35 @@ function ChipRow({ label, words }: ChipRowProps) {
     );
 }
 
-// TEMPORARY (F9 replaces this with the real flashcard flow). It grades every
-// study item of this verb through the real scheduler, so the SRS engine and its
-// effect on mastery are provable before flashcards and quizzes exist.
-const GRADES: ReviewGrade[] = ["again", "hard", "good", "easy"];
-
-interface ReviewControlProps {
+// The verb page's job is reading; studying happens in the flashcard session,
+// scoped to this verb's items.
+interface StudyEntryProps {
     verb: Verb;
 }
 
-function ReviewControl({ verb }: ReviewControlProps) {
+function StudyEntry({ verb }: StudyEntryProps) {
     const { spacing } = useTheme();
-    const { recordReview, resetProgress } = useProgress();
-    const [busy, setBusy] = useState(false);
-    const [message, setMessage] = useState<string | null>(null);
+    const count = getStudyItemIds(verb).length;
 
-    const ids = getStudyItemIds(verb);
-
-    // The action returns its own message, so a result can report what actually
-    // happened rather than a generic confirmation.
-    const run = async (
-        action: () => Promise<string>,
-        fallback: string,
-    ): Promise<void> => {
-        setBusy(true);
-        setMessage(null);
-        try {
-            setMessage(await action());
-        } catch (cause: unknown) {
-            setMessage(
-                cause instanceof Error ? cause.message : fallback,
-            );
-        } finally {
-            setBusy(false);
-        }
-    };
-
-    const gradeAll = (grade: ReviewGrade) =>
-        run(async () => {
-            const at = new Date();
-            let last: ItemProgress | undefined;
-            for (const id of ids) {
-                last = await recordReview(id, grade, at);
-            }
-            const interval = last ? `${last.intervalDays} days` : "none";
-            return `Graded ${ids.length} items ${GRADE_LABEL[grade]}; next in ${interval}.`;
-        }, "That did not save.");
+    if (count === 0) return null;
 
     return (
         <View style={{ gap: spacing.sm }}>
-            <Text variant="caption" color="faint">
-                Temporary until flashcards land (F9): grade every item of this
-                verb to check the schedule.
-            </Text>
-            <View
-                style={{
-                    flexDirection: "row",
-                    flexWrap: "wrap",
-                    gap: spacing.sm,
-                }}
-            >
-                {GRADES.map((grade) => (
-                    <Button
-                        key={grade}
-                        title={GRADE_LABEL[grade]}
-                        variant="ghost"
-                        size="sm"
-                        disabled={ids.length === 0 || busy}
-                        onPress={() => gradeAll(grade)}
-                    />
-                ))}
-            </View>
             <Button
-                title="Reset progress"
-                variant="ghost"
+                title="Study this verb"
                 block
-                disabled={busy}
-                onPress={() => run(async () => {
-                    await resetProgress();
-                    return "Progress reset.";
-                }, "Progress could not be reset.")}
+                onPress={() =>
+                    router.push({
+                        pathname: "/flashcards",
+                        params: { verbId: verb.id },
+                    })
+                }
             />
-            {message ? (
-                <Text
-                    variant="caption"
-                    color="muted"
-                    accessibilityLiveRegion="polite"
-                >
-                    {message}
-                </Text>
-            ) : null}
+            <Text variant="caption" color="faint" align="center">
+                {count === 1
+                    ? "One card for this verb's study item."
+                    : `${count} cards for this verb's study items.`}
+            </Text>
         </View>
     );
 }
@@ -448,7 +384,7 @@ export default function VerbDetailScreen() {
                     </View>
                 ) : null}
 
-                <ReviewControl verb={verb} />
+                <StudyEntry verb={verb} />
             </ScrollView>
         </View>
     );

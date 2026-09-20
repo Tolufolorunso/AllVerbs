@@ -1,5 +1,6 @@
 import {
     CEFR_LEVELS,
+    STUDY_ITEM_KIND_LETTER,
     type CefrLevel,
     type CollocationType,
 } from "./types";
@@ -59,10 +60,13 @@ const COLLOCATION_TYPES: readonly CollocationType[] = [
     "other",
 ];
 
+// The validator walks collections, so it needs the letter for a field name rather
+// than a kind. Both views come from the one shared map so the persisted id format
+// has a single definition.
 const COLLECTION_LETTER = {
-    senses: "s",
-    phrasalVerbs: "p",
-    collocations: "c",
+    senses: STUDY_ITEM_KIND_LETTER.sense,
+    phrasalVerbs: STUDY_ITEM_KIND_LETTER.phrasalVerb,
+    collocations: STUDY_ITEM_KIND_LETTER.collocation,
 } as const;
 
 type ItemLetter = "s" | "p" | "c";
