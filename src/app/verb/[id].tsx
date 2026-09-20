@@ -5,9 +5,10 @@ import { Text } from "@/components/ui/text";
 import { StudyItemRow } from "@/components/study-item-row";
 import { VerbFormsTable } from "@/components/verb-forms-table";
 import { getVerbById } from "@/data/loader";
-import type { Verb } from "@/data/types";
+import { getStudyItemIds, type Verb } from "@/data/types";
 import { useSpeech, type SpeechStatus } from "@/hooks/use-speech";
 import { useTheme } from "@/hooks/use-theme";
+import { useProgress } from "@/storage/progress-context";
 import {
     MASTERY_LABEL,
     MASTERY_TONE,
@@ -152,6 +153,95 @@ function ChipRow({ label, words }: ChipRowProps) {
     );
 }
 
+// TEMPORARY (F9 removes this when real study flows write progress). It records
+// one review for every study item of this verb with fixed placeholder values, so
+// stored progress and its mastery badges are provable before flashcards and
+// quizzes exist. F8 replaces these values with real scheduling.
+const FIRST_REVIEW = { reviewCount: 1, intervalDays: 1 };
+const LATER_REVIEW = { reviewCount: 2, intervalDays: 30 };
+
+interface ReviewControlProps {
+    verb: Verb;
+}
+
+function ReviewControl({ verb }: ReviewControlProps) {
+    const { spacing } = useTheme();
+    const { getItemProgress, saveItemProgress, updateStreak, resetProgress } =
+        useProgress();
+    const [busy, setBusy] = useState(false);
+    const [message, setMessage] = useState<string | null>(null);
+
+    const ids = getStudyItemIds(verb);
+
+    const run = async (action: () => Promise<void>, done: string) => {
+        setBusy(true);
+        setMessage(null);
+        try {
+            await action();
+            setMessage(done);
+        } catch (cause: unknown) {
+            setMessage(
+                cause instanceof Error ? cause.message : "That did not save.",
+            );
+        } finally {
+            setBusy(false);
+        }
+    };
+
+    const logReview = () =>
+        run(async () => {
+            const at = new Date();
+            for (const id of ids) {
+                const current = getItemProgress(id);
+                const step =
+                    (current?.reviewCount ?? 0) > 0 ? LATER_REVIEW : FIRST_REVIEW;
+                await saveItemProgress({
+                    studyItemId: id,
+                    ease: 2.5,
+                    intervalDays: step.intervalDays,
+                    dueAt: new Date(
+                        at.getTime() + step.intervalDays * 24 * 60 * 60 * 1000,
+                    ).toISOString(),
+                    reviewCount: step.reviewCount,
+                });
+            }
+            await updateStreak(at);
+        }, `Logged ${ids.length} reviews for ${verb.infinitive}.`);
+
+    return (
+        <View style={{ gap: spacing.sm }}>
+            <Text variant="caption" color="faint">
+                Temporary until study flows land (F9): log a review to check that
+                progress is stored.
+            </Text>
+            <Button
+                title="Log a review (temporary)"
+                variant="ghost"
+                block
+                disabled={ids.length === 0}
+                loading={busy}
+                onPress={logReview}
+            />
+            <Button
+                title="Reset progress"
+                variant="ghost"
+                block
+                disabled={busy}
+                onPress={() => run(resetProgress, "Progress reset.")}
+            />
+            {message ? (
+                <Text
+                    variant="caption"
+                    color="muted"
+                    accessibilityLiveRegion="polite"
+                >
+                    {message}
+                </Text>
+            ) : null}
+        </View>
+    );
+}
+
 export default function VerbDetailScreen() {
     const { colors, spacing } = useTheme();
     const id = firstParam(useLocalSearchParams<{ id: string | string[] }>().id);
@@ -232,7 +322,7 @@ export default function VerbDetailScreen() {
     }
 
     const { verb } = state;
-    const mastery = masteryFor(verb.id);
+    const mastery = masteryFor(verb);
 
     return (
         <View style={{ flex: 1, backgroundColor: colors.background }}>
@@ -350,6 +440,8 @@ export default function VerbDetailScreen() {
                         ) : null}
                     </View>
                 ) : null}
+
+                <ReviewControl verb={verb} />
             </ScrollView>
         </View>
     );

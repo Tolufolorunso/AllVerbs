@@ -166,7 +166,7 @@ export default function BrowseScreen() {
                         renderItem={({ item }) => (
                             <VerbListItem
                                 verb={item.verb}
-                                mastery={masteryFor(item.verb.id)}
+                                mastery={masteryFor(item.verb)}
                                 snippet={matchSnippet(item)}
                                 onPress={() => openVerb(item.verb.id)}
                             />
@@ -198,7 +198,7 @@ export default function BrowseScreen() {
                     renderItem={({ item }) => (
                         <VerbListItem
                             verb={item}
-                            mastery={masteryFor(item.id)}
+                            mastery={masteryFor(item)}
                             onPress={() => openVerb(item.id)}
                         />
                     )}

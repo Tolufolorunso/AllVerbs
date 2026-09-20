@@ -26,7 +26,7 @@ data foundation everything reads from.
 
 ## Milestone 2 - Active study
 
-- [ ] 7. **On-device progress storage** - persistence layer for per-item
+- [x] 7. **On-device progress storage** - persistence layer for per-item
   mastery/SRS state keyed by study-item id, plus stats and streak (local only).
 - [ ] 8. **Light SRS engine** - mastery state per study item (sense,
   collocation, phrasal verb) and "due" review scheduling that prioritizes weak

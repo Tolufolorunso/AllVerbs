@@ -352,6 +352,23 @@ function validateVerb(
     );
 }
 
+const ITEM_LETTERS: readonly string[] = Object.values(COLLECTION_LETTER);
+
+// The dataset's own id shape, exposed so a store keyed by study-item id can
+// validate what it holds against the same rules this validator enforces.
+export function isValidStudyItemId(id: string): boolean {
+    const parts = id.split(".");
+    if (parts.length !== 3) return false;
+    const verbId = parts[0] ?? "";
+    const letter = parts[1] ?? "";
+    const slug = parts[2] ?? "";
+    return (
+        VERB_ID.test(verbId) &&
+        ITEM_LETTERS.includes(letter) &&
+        ITEM_SLUG.test(slug)
+    );
+}
+
 export function validateVerbs(value: unknown): ValidationIssue[] {
     if (!Array.isArray(value)) {
         return [{ path: "verbs", message: "must be an array of verbs" }];

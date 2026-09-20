@@ -76,3 +76,13 @@ export type ResolvedStudyItem =
     | { kind: "sense"; verb: Verb; sense: Sense }
     | { kind: "collocation"; verb: Verb; collocation: Collocation }
     | { kind: "phrasalVerb"; verb: Verb; phrasalVerb: PhrasalVerb };
+
+// A verb's study items in a fixed order. Mastery, stats, and the study flows all
+// need this list, and they must agree on what a verb's items are.
+export function getStudyItemIds(verb: Verb): string[] {
+    return [
+        ...verb.senses.map((item) => item.id),
+        ...verb.collocations.map((item) => item.id),
+        ...verb.phrasalVerbs.map((item) => item.id),
+    ];
+}
