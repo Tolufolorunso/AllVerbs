@@ -33,7 +33,7 @@ data foundation everything reads from.
   items.
 - [x] 9. **Flashcards** - full-screen swipe/tap cards for senses, collocations,
   and phrasal verbs, driven by the SRS queue.
-- [ ] 10. **Quizzes** - full-screen active-recall exercises (multiple choice,
+- [x] 10. **Quizzes** - full-screen active-recall exercises (multiple choice,
   correct tense/form, fill-in-the-blank, and complete-the-phrase for
   collocations/phrasal verbs) that update per-item mastery.
 - [ ] 11. **Study tab hub** - mode picker (flashcards or quiz) + scope (by level
